@@ -1,8 +1,13 @@
 var newText = prompt("input new text");
-var selection = window.getSelection().getRangeAt(0);
+var sel = window.getSelection();
+var range = sel.getRangeAt(0);
 var span = document.createElement("span");
 var node = document.createTextNode(newText);
 
 span.appendChild(node);
 
-selection.insertNode(span);
+span.style.backgroundColor = "red";
+span.style.fontWeight = "bold";
+
+range.deleteContents();
+range.insertNode(span);
