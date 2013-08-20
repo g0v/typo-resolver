@@ -1,11 +1,15 @@
 {
-  "name": "Context Menus Sample",
-  "description": "Shows some of the features of the Context Menus API",
-  "version": "0.6",
-  "permissions": ["contextMenus"],
-  "manifest_version": 2,
-  "content_scripts": [{
-    "matches": ["http://*/*"],
-    "js": ["jquery.js", "script.js"]
-  }]
+  "name": "Page Redder",
+  "version": "2.0",
+  "permissions": [
+    "activeTab"
+  ],
+  "background": {
+    "scripts": ["jquery.js", "background.js"],
+    "persistent": false
+  },
+  "browser_action": {
+    "default_title": "Make this page red"
+  },
+  "manifest_version": 2
 }
