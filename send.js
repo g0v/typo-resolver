@@ -1,14 +1,12 @@
-var emails = $("a[href^='https://mail.google.com']");
+var regex = /[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}/g;
+var emails = $("body").html().match(regex);
 var recipients = "cpckewang@gmail.com";
 
-alert(emails.length);
-
-for(var i=0;i<emails.length;i++){
-  console.log(emails[i]);
-}
-
 if(emails.length != 0) {
-  recipients = emails.get();
+  recipients = emails;
 }
 
-window.open("mailto:" + recipients + "?subject=test");
+var subject = "[Typo Resolver] " + document.title + " has some typo";
+var body = "hello";
+
+window.open("mailto:" + recipients + "?subject=" + subject + "&body=" + body);
