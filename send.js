@@ -9,4 +9,12 @@ if(emails.length != 0) {
 var subject = "[Typo Resolver] " + document.title + " has some typo";
 var body = "hello";
 
-window.open("mailto:" + recipients + "?subject=" + subject + "&body=" + body);
+html2canvas([document.body], {
+  onrendered: function(canvas){
+    var img = canvas.toDataURL("image/png");
+
+    window.open(img);
+
+    window.open("mailto:" + recipients + "?subject=" + subject + "&body=" + body);
+  }
+});
