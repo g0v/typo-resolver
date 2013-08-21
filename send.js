@@ -1,9 +1,11 @@
 var regex = /[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}/g;
 var emails = $("body").html().match(regex);
-var recipients = "cpckewang@gmail.com";
+var recipients = "";
 
-if(emails.length != 0) {
+if(emails !== null) {
   recipients = emails;
+}else{
+  alert("not found any email address, please input some valid email addresses manually.");
 }
 
 var subject = "[Typo Resolver] " + document.title + " has some typo";

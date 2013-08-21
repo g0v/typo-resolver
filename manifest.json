@@ -1,12 +1,21 @@
 {
+  "manifest_version": 2,
   "name": "Typo Resolver",
   "version": "1.0",
-  "permissions": [
-    "activeTab", "<all_urls>" 
-  ],
+  "default_locale": "en",
+  "description": "Fix some typo",
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
   "browser_action": {
-    "default_title": "Fix some typo",
+    "default_title": "Typo Resolver",
     "default_popup": "popup.html"
   },
-  "manifest_version": 2
+  "author": "kewang ( cpckewang@gmail.com )",
+  "homepage_url": "https://github.com/kewangtw/typo-resolver",
+  "permissions": [
+    "activeTab", "<all_urls>" 
+  ]
 }
