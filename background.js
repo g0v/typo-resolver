@@ -2,17 +2,18 @@ var mnuParent = chrome.contextMenus.create({
   "title": "Typo Resolver",
     "contexts": ["all"]
 });
-var mnuModify = chrome.contextMenus.create({
+
+chrome.contextMenus.create({
   "parentId": mnuParent,
-    "title": "Modify",
-    "contexts": ["selection"],
-    "onclick": modifyClick
+  "title": "Modify",
+  "contexts": ["selection"],
+  "onclick": modifyClick
 });
-var mnuSend = chrome.contextMenus.create({
+chrome.contextMenus.create({
   "parentId": mnuParent,
-    "title": "Send",
-    "contexts": ["all"],
-    "onclick": sendClick
+  "title": "Send",
+  "contexts": ["all"],
+  "onclick": sendClick
 });
 
 function modifyClick(){

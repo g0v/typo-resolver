@@ -9,7 +9,7 @@ if(emails !== null) {
 }
 
 var subject = "[Typo Resolver] " + document.title + " has some typo";
-var body = "hello";
+var body = "Hello, your site has some typo. The attachment has already highlight it.";
 
 html2canvas([document.body], {
   onrendered: function(canvas){
