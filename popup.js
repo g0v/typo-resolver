@@ -1,13 +1,13 @@
 $(function(){
   $("#btnModify").click(function(){
-    alert("modify");
-
-    window.close();
+    chrome.tabs.executeScript({
+      file: "modify.js"
+    });
   });
 
   $("#btnSend").click(function(){
-    alert("send");
-
-    window.close();
+    chrome.tabs.executeScript(null, {file: "jquery.js"}, function(){
+      chrome.tabs.executeScript({file: "send.js"});
+    });
   });
 });

@@ -11,3 +11,11 @@ chrome.browserAction.onClicked.addListener(function(tab) {
     file: 'script.js'
   });
 });
+
+chrome.runtime.onMessage.addListener(function(message, sender, sendResponse){
+  var data = new Date().getTime() + ": " + message.data;
+
+  console.log(data);
+
+  sendResponse(data);
+});
