@@ -8,13 +8,13 @@
     "48": "icon.png",
     "128": "icon.png"
   },
-  "browser_action": {
-    "default_title": "Typo Resolver",
-    "default_popup": "popup.html"
+  "background": {
+    "scripts": ["jquery.js", "background.js"]
   },
   "author": "kewang ( cpckewang@gmail.com )",
   "homepage_url": "https://github.com/kewangtw/typo-resolver",
   "permissions": [
-    "activeTab", "<all_urls>" 
+    "contextMenus",
+    "activeTab"
   ]
 }
