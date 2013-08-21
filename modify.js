@@ -1,22 +1,15 @@
 var newText = prompt("input new text");
 var sel = window.getSelection();
 var range = sel.getRangeAt(0);
-/*
-var span = document.createElement("span");
-var node = document.createTextNode(newText);
-*/
-var $span = $("<span></span>");
+var style = "background-color: red; font-weight: bold";
+var span = $.parseHTML("<span style='" + style + "'>" + newText + "</span>");
+var selectionContents = range.extractContents();
+var old = document.createElement("span");
 
-$span.html(newText);
-$span.css("background-color", "red");
-$span.css("font-weight", "bold");
+//mark old text
+old.style.textDecoration = "line-through";
+old.appendChild(selectionContents);
+range.insertNode(old);
 
-alert($span.get());
-
-//span.appendChild(node);
-
-//span.style.backgroundColor = "red";
-//span.style.fontWeight = "bold";
-
-range.deleteContents();
-range.insertNode($span.get());
+//insert new text
+range.insertNode(span[0]);
