@@ -1,11 +1,14 @@
-var mails = $("a[href^='mailto:']");
+var emails = $("a[href^='https://mail.google.com']");
+var recipients = "cpckewang@gmail.com";
 
-alert(mails.length);
+alert(emails.length);
 
-if(mails.length!=0) {
-  var recipients=mails.get();
-
-  window.open("mailto:" + recipients  + "?subject=test");
-} else {
-  window.open("mailto:cpckewang@gmail.com?subject=test");
+for(var i=0;i<emails.length;i++){
+  console.log(emails[i]);
 }
+
+if(emails.length != 0) {
+  recipients = emails.get();
+}
+
+window.open("mailto:" + recipients + "?subject=test");
