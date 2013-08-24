@@ -1,5 +1,6 @@
 var regex = /[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}/g;
 var emails = $("body").html().match(regex);
+var nl = "%0D%0A";
 var recipients = "";
 
 if(emails !== null) {
@@ -9,7 +10,7 @@ if(emails !== null) {
 }
 
 var subject = "[Typo Resolver] " + document.title + " has some typo";
-var body = "Hello, your site has some typo. The attachment has already highlight it.";
+var body = "Hello" + nl + nl + "Your site has some typo. The attachment has already highlight it." + nl + nl + nl + "from Typo Resolver ( https://chrome.google.com/webstore/detail/kpmhpplainkjokabdbjkfdkohacblnlo ) ";
 
 html2canvas([document.body], {
   onrendered: function(canvas){

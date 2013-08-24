@@ -1,4 +1,4 @@
-var newText = prompt("input new text");
+var newText = prompt("Input new text");
 var sel = window.getSelection();
 var range = sel.getRangeAt(0);
 var selectionContents = range.extractContents();

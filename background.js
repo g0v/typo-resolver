@@ -5,27 +5,27 @@ var mnuParent = chrome.contextMenus.create({
 
 chrome.contextMenus.create({
   "parentId": mnuParent,
-  "title": "Modify",
+  "title": "Fix it",
   "contexts": ["selection"],
-  "onclick": modifyClick
+  "onclick": fixClick
 });
 chrome.contextMenus.create({
   "parentId": mnuParent,
-  "title": "Send",
+  "title": "Feedback",
   "contexts": ["all"],
-  "onclick": sendClick
+  "onclick": feedbackClick
 });
 
-function modifyClick(){
+function fixClick(){
   chrome.tabs.executeScript(null, {file: "jquery.js"}, function(){
-    chrome.tabs.executeScript({file: "modify.js"});
+    chrome.tabs.executeScript({file: "fix.js"});
   });
 }
 
-function sendClick(){
+function feedbackClick(){
   chrome.tabs.executeScript(null, {file: "jquery.js"}, function(){
     chrome.tabs.executeScript(null, {file: "html2canvas.js"}, function(){
-      chrome.tabs.executeScript({file: "send.js"});
+      chrome.tabs.executeScript({file: "feedback.js"});
     });
   });
 }
