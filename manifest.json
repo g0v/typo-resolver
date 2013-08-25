@@ -12,7 +12,7 @@
     "scripts": ["jquery.js", "background.js"]
   },
   "author": "kewang ( cpckewang@gmail.com )",
-  "homepage_url": "https://github.com/kewangtw/typo-resolver",
+  "homepage_url": "https://github.com/g0v/typo-resolver",
   "permissions": [
     "contextMenus",
     "activeTab"
