@@ -15,6 +15,7 @@
   "homepage_url": "https://github.com/g0v/typo-resolver",
   "permissions": [
     "contextMenus",
-    "activeTab"
+    "activeTab",
+    "tabs"
   ]
 }
