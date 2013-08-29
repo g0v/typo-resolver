@@ -6,3 +6,8 @@ function Typo(){
 Typo.prototype.getPosition = function(){
   return {"x": this.x, "y": this.y};
 };
+
+Typo.prototype.setPosition = function(x, y){
+  this.x = x;
+  this.y = y;
+};
