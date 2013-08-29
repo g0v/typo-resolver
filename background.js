@@ -1,3 +1,4 @@
+var arrTypo = [];
 var mnuParent = chrome.contextMenus.create({
   "title": "Typo Resolver",
     "contexts": ["all"]
@@ -26,8 +27,16 @@ function feedbackClick(){
   chrome.tabs.executeScript(null, {file: "jquery.js"}, function(){
     chrome.tabs.executeScript(null, {file: "html2canvas.js"}, function(){
       chrome.tabs.executeScript(null, {file: "Typo.js"}, function(){
-        chrome.tabs.executeScript({file: "feedback.js"});
+        chrome.tabs.executeScript(null, {code: "var arrTypo = '" + arrTypo + "';"}, function(){
+          chrome.tabs.executeScript({file: "feedback.js"});
+        });
       });
     });
   });
 }
+
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
+  arrTypo.push(request.typo);
+
+  sendResponse("OK");
+});

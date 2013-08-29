@@ -14,3 +14,8 @@ range.insertNode(oldSpan[0]);
 
 //insert new text
 range.insertNode(newSpan[0]);
+
+//pass typo object to background.js
+chrome.runtime.sendMessage({"newText": newText}, function(response){
+  alert("response: " + response);
+});
