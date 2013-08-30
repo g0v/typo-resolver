@@ -19,7 +19,9 @@ chrome.contextMenus.create({
 
 function fixClick(){
   chrome.tabs.executeScript(null, {file: "jquery.js"}, function(){
-    chrome.tabs.executeScript({file: "fix.js"});
+    chrome.tabs.executeScript(null, {file: "Typo.js"}, function(){
+      chrome.tabs.executeScript({file: "fix.js"});
+    });
   });
 }
 

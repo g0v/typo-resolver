@@ -12,6 +12,8 @@ if(emails !== null) {
 var subject = "[Typo Resolver] " + document.title + " has some typo";
 var body = "Hello" + nl + nl + "Your site has some typo. The attachment has already highlight it." + nl + nl + nl + "from Typo Resolver ( https://chrome.google.com/webstore/detail/kpmhpplainkjokabdbjkfdkohacblnlo ) ";
 
+alert(arrTypo.length);
+/*
 html2canvas([document.body], {
   onrendered: function(canvas){
     var ctx=canvas.getContext('2d');
@@ -39,3 +41,4 @@ html2canvas([document.body], {
     window.open("mailto:" + recipients + "?subject=" + subject + "&body=" + body);
   }
 });
+*/
