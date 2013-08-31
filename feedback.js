@@ -14,14 +14,16 @@ var body = "Hello" + nl + nl + "Your site has some typo. The attachment has alre
 var img = "";
 
 $.each(arrTypo, function(i, typo){
-  window.scrollTo(typo.x, typo.y);
+  (function(){
+    window.scrollTo(typo.x, typo.y);
 
-  chrome.runtime.sendMessage({"action": "capture"}, function(response){
-    img += response;
-  });
+    chrome.runtime.sendMessage({"action": "capture"}, function(response){
+      img += response;
+    });
+  })();
 });
 
-console.log(img);
+console.log("img: " + img);
 window.open(img);
 
 /*
