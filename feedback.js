@@ -11,8 +11,11 @@ if(emails !== null) {
 
 var subject = "[Typo Resolver] " + document.title + " has some typo";
 var body = "Hello" + nl + nl + "Your site has some typo. The attachment has already highlight it." + nl + nl + nl + "from Typo Resolver ( https://chrome.google.com/webstore/detail/kpmhpplainkjokabdbjkfdkohacblnlo ) ";
+var img = "";
 
-alert(arrTypo.length);
+$.each(arrTypo, function(i, typo){
+  window.scrollTo(typo.x, typo.y);
+});
 /*
 html2canvas([document.body], {
   onrendered: function(canvas){
