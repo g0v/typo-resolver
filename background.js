@@ -28,7 +28,7 @@ function fixClick(){
 function feedbackClick(){
   chrome.tabs.executeScript({file: "jquery.js"}, function(){
     chrome.tabs.executeScript({file: "Typo.js"}, function(){
-      chrome.tabs.executeScript({code: "var arrTypo = '" + arrTypo + "';"}, function(){
+      chrome.tabs.executeScript({code: "var arrTypo = JSON.parse('" + JSON.stringify(arrTypo) + "');"}, function(){
         chrome.tabs.executeScript({file: "feedback.js"});
       });
     });
