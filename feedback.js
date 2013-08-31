@@ -15,7 +15,15 @@ var img = "";
 
 $.each(arrTypo, function(i, typo){
   window.scrollTo(typo.x, typo.y);
+
+  chrome.runtime.sendMessage({"action": "capture"}, function(response){
+    img += response;
+  });
 });
+
+console.log(img);
+window.open(img);
+
 /*
 html2canvas([document.body], {
   onrendered: function(canvas){

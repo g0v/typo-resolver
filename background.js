@@ -36,7 +36,25 @@ function feedbackClick(){
 }
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
-  arrTypo.push(request.typo);
+  if(request.action === "fix"){
+    arrTypo.push(request.typo);
 
-  sendResponse("OK");
+    sendResponse("OK");
+  }
+});
+
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
+  var img;
+
+  if(request.action === "capture"){
+    chrome.tabs.captureVisibleTab(function(dataUrl){
+      img = dataUrl;
+
+      console.log(img);
+
+      sendResponse(img);
+    });
+
+    return true;
+  }
 });
