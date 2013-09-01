@@ -44,15 +44,9 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
 });
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
-  var img;
-
   if(request.action === "capture"){
     chrome.tabs.captureVisibleTab(function(dataUrl){
-      img = dataUrl;
-
-      console.log(img);
-
-      sendResponse(img);
+      sendResponse(dataUrl);
     });
 
     return true;

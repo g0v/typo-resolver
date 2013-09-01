@@ -13,17 +13,25 @@ var subject = "[Typo Resolver] " + document.title + " has some typo";
 var body = "Hello" + nl + nl + "Your site has some typo. The attachment has already highlight it." + nl + nl + nl + "from Typo Resolver ( https://chrome.google.com/webstore/detail/kpmhpplainkjokabdbjkfdkohacblnlo ) ";
 var img = "";
 
-$.each(arrTypo, function(i, typo){
-  (function(){
-    window.scrollTo(typo.x, typo.y);
+arrTypo.forEach(function(typo){
+  window.scrollTo(typo.x, typo.y);
 
+  (function(){
     chrome.runtime.sendMessage({"action": "capture"}, function(response){
-      img += response;
+      console.log("3");
+
+      return response;
     });
   })();
+
+  console.log("response: " + response);
+
+  img += response;
+
+  console.log("img inner: " + img);
 });
 
-console.log("img: " + img);
+console.log("img outer: " + img);
 window.open(img);
 
 /*
