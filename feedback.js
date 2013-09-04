@@ -11,7 +11,7 @@ if(emails !== null) {
 
 var subject = "[Typo Resolver] " + document.title + " has some typo";
 var body = "Hello" + nl + nl + "Your site has some typo. The attachment has already highlight it." + nl + nl + nl + "from Typo Resolver ( https://chrome.google.com/webstore/detail/kpmhpplainkjokabdbjkfdkohacblnlo ) ";
-var img = [];
+var arrData = [];
 var arrFun = [];
 
 function scrollToTypo(typo, callback){
@@ -27,7 +27,7 @@ function asyncFunction(typo){
 
   scrollToTypo(typo, function(){
     chrome.runtime.sendMessage({"action": "capture"}, function(response){
-      img.push(response);
+      arrData.push(response);
 
       d.resolve();
     });
@@ -41,7 +41,32 @@ arrTypo.forEach(function(typo){
 });
 
 $.when.apply(null, arrFun).then(function(){
-  img.forEach(function(i){
-    window.open(i);
+  var arrImg = [];
+  var canvas = document.createElement("canvas");
+  var ctx = canvas.getContext("2d");
+
+  arrData.forEach(function(data){
+    var img = new Image;
+
+    img.src = data;
+
+    arrImg.push(img);
+
+    window.open(data);
   });
+/*
+  var height = 0;
+
+  arrImg.forEach(function(img){
+    console.log("height: " + height);
+
+    ctx.drawImage(img, 0, height);
+
+    height += img.height;
+
+    console.log("img.height: " + img.height);
+  });
+
+  window.open(canvas.toDataURL());
+*/
 });
