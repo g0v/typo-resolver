@@ -13,8 +13,11 @@ var subject = "[Typo Resolver] " + document.title + " has some typo";
 var body = "Hello" + nl + nl + "Your site has some typo. The attachment has already highlight it." + nl + nl + nl + "from Typo Resolver ( https://chrome.google.com/webstore/detail/kpmhpplainkjokabdbjkfdkohacblnlo ) ";
 var arrData = [];
 var arrFun = [];
+var canvas = document.createElement("canvas");
+var ctx = canvas.getContext("2d");
+var canvasHeight = 0;
 
-function scrollToTypo(typo, callback){
+function scrollToWithTypo(typo, callback){
   var anim = {scrollTop: typo.y};
 
   $("body").animate(anim, "fast", "swing", function(){
@@ -22,10 +25,10 @@ function scrollToTypo(typo, callback){
   });
 }
 
-function asyncFunction(typo){
+function screenshot(typo){
   var d = new $.Deferred();
 
-  scrollToTypo(typo, function(){
+  scrollToWithTypo(typo, function(){
     chrome.runtime.sendMessage({"action": "capture"}, function(response){
       arrData.push(response);
 
@@ -37,23 +40,24 @@ function asyncFunction(typo){
 }
 
 arrTypo.forEach(function(typo){
-  arrFun.push(asyncFunction(typo));
+  arrFun.push(screenshot(typo));
 });
 
 $.when.apply(null, arrFun).then(function(){
   var arrImg = [];
-  var canvas = document.createElement("canvas");
-  var ctx = canvas.getContext("2d");
 
   arrData.forEach(function(data){
     var img = new Image;
 
     img.src = data;
+//    img.onload = imgToCanvas;
 
     arrImg.push(img);
 
     window.open(data);
   });
+});
+
 /*
   var height = 0;
 
@@ -69,4 +73,3 @@ $.when.apply(null, arrFun).then(function(){
 
   window.open(canvas.toDataURL());
 */
-});
