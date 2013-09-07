@@ -15,7 +15,6 @@ var arrData = [];
 var arrFun = [];
 var canvas = document.createElement("canvas");
 var ctx = canvas.getContext("2d");
-var canvasHeight = 0;
 
 function scrollToWithTypo(typo, callback){
   var anim = {scrollTop: typo.y};
@@ -50,26 +49,22 @@ $.when.apply(null, arrFun).then(function(){
     var img = new Image;
 
     img.src = data;
-//    img.onload = imgToCanvas;
 
     arrImg.push(img);
+  });
 
-    window.open(data);
+  imagesLoaded(arrImg, function(instance){
+    var height = 0;
+
+    canvas.height = $(window).height() * arrImg.length;
+    canvas.width = $(window).width();
+
+    instance.images.forEach(function(image){
+      ctx.drawImage(image.img, 0, height);
+
+      height += image.img.height;
+    });
+
+    window.open(canvas.toDataURL());
   });
 });
-
-/*
-  var height = 0;
-
-  arrImg.forEach(function(img){
-    console.log("height: " + height);
-
-    ctx.drawImage(img, 0, height);
-
-    height += img.height;
-
-    console.log("img.height: " + img.height);
-  });
-
-  window.open(canvas.toDataURL());
-*/
