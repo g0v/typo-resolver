@@ -66,5 +66,7 @@ $.when.apply(null, arrFun).then(function(){
     });
 
     window.open(canvas.toDataURL());
+
+    window.open("mailto:" + recipients + "?subject=" + subject + "&body=" + body);
   });
 });
