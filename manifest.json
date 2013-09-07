@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Typo Resolver",
-  "version": "0.6.1",
+  "version": "0.7",
   "description": "Help you to feedback some typo",
   "icons": {
     "16": "icon.png",
