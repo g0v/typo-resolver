@@ -17,7 +17,7 @@ var canvas = document.createElement("canvas");
 var ctx = canvas.getContext("2d");
 
 function scrollToWithTypo(typo, callback){
-  var anim = {scrollTop: typo.y - typo.height * 3};
+  var anim = {scrollTop: typo.y};
 
   $("body").animate(anim, "fast", "swing", function(){
     callback();
