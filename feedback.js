@@ -39,12 +39,12 @@ function screenshot(typo){
 }
 
 arrTypo.forEach(function(typo){
-  arrFun.push(screenshot(typo));
+  if(typo.url === window.location.href){
+    arrFun.push(screenshot(typo));
+  }
 });
 
 $.when.apply(null, arrFun).then(function(){
-  console.log("arrData length: " + arrData.length);
-
   var arrImg = [];
 
   arrData.forEach(function(data){
