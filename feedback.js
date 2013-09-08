@@ -43,6 +43,8 @@ arrTypo.forEach(function(typo){
 });
 
 $.when.apply(null, arrFun).then(function(){
+  console.log("arrData length: " + arrData.length);
+
   var arrImg = [];
 
   arrData.forEach(function(data){
