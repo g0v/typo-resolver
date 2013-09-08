@@ -17,7 +17,7 @@ var canvas = document.createElement("canvas");
 var ctx = canvas.getContext("2d");
 
 function scrollToWithTypo(typo, callback){
-  var anim = {scrollTop: typo.y};
+  var anim = {scrollTop: typo.y - typo.height * 3};
 
   $("body").animate(anim, "fast", "swing", function(){
     callback();
@@ -39,6 +39,7 @@ function screenshot(typo){
 }
 
 arrTypo.forEach(function(typo){
+  //prevent other pages access current page
   if(typo.url === window.location.href){
     arrFun.push(screenshot(typo));
   }
@@ -61,7 +62,7 @@ $.when.apply(null, arrFun).then(function(){
     canvas.height = $(window).height() * arrImg.length;
     canvas.width = $(window).width();
 
-    instance.images.forEach(function(image){
+    instance.images.forEach(function(i, image){
       ctx.drawImage(image.img, 0, height);
 
       height += image.img.height;

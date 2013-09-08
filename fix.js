@@ -16,6 +16,7 @@ range.insertNode(oldSpan[0]);
 //insert new text
 range.insertNode(newSpan[0]);
 
+typo.setSize($(oldSpan[0]).height(), $(oldSpan[0]).width());
 typo.setPosition($(oldSpan[0]).offset().left, $(oldSpan[0]).offset().top);
 typo.setText($(oldSpan[0]).text(), $(newSpan[0]).text());
 typo.setUrl(window.location.href);
