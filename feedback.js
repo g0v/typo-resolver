@@ -49,7 +49,7 @@ $.when.apply(null, arrFun).then(function(){
   var arrImg = [];
 
   arrData.forEach(function(data){
-    var img = new Image;
+    var img = new Image();
 
     img.src = data;
 
@@ -62,7 +62,7 @@ $.when.apply(null, arrFun).then(function(){
     canvas.height = $(window).height() * arrImg.length;
     canvas.width = $(window).width();
 
-    instance.images.forEach(function(i, image){
+    instance.images.forEach(function(image){
       ctx.drawImage(image.img, 0, height);
 
       height += image.img.height;
