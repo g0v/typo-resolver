@@ -49,7 +49,7 @@ $.when.apply(null, arrFun).then(function(){
   var arrImg = [];
 
   arrData.forEach(function(data){
-    var img = new Image();
+    var img = document.createElement("img");
 
     img.src = data;
 
