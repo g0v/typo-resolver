@@ -16,6 +16,8 @@ var arrFun = [];
 var canvas = document.createElement("canvas");
 var ctx = canvas.getContext("2d");
 
+ctx.font = "30pt 新細明體";
+
 function scrollToWithTypo(typo, callback){
   var anim = {scrollTop: typo.y};
 
@@ -29,7 +31,10 @@ function screenshot(typo){
 
   scrollToWithTypo(typo, function(){
     chrome.runtime.sendMessage({"action": "capture"}, function(response){
-      arrData.push(response);
+      arrData.push({
+        "response": response,
+        "typo": typo
+      });
 
       d.resolve();
     });
@@ -51,9 +56,13 @@ $.when.apply(null, arrFun).then(function(){
   arrData.forEach(function(data){
     var img = document.createElement("img");
 
-    img.src = data;
+    img.src = data.response;
+
+    data.img = img;
 
     arrImg.push(img);
+
+    delete data.response;
   });
 
   imagesLoaded(arrImg, function(instance){
@@ -62,10 +71,13 @@ $.when.apply(null, arrFun).then(function(){
     canvas.height = $(window).height() * arrImg.length;
     canvas.width = $(window).width();
 
-    instance.images.forEach(function(image){
-      ctx.drawImage(image.img, 0, height);
+    instance.images.forEach(function(image, i){
+      var typo = arrData[i].typo;
 
-      height += image.img.height;
+      ctx.fillText(typo.oldText, 0, height + 30);
+      ctx.drawImage(image.img, 0, height + 30 + 30);
+
+      height += (image.img.height + 30);
     });
 
     window.open(canvas.toDataURL());
