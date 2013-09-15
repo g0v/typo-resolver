@@ -14,9 +14,6 @@ var body = "Hello" + nl + nl + "Your site has some typo. The attachment has alre
 var arrData = [];
 var arrFun = [];
 var canvas = document.createElement("canvas");
-var ctx = canvas.getContext("2d");
-
-ctx.font = "30pt 新細明體";
 
 function scrollToWithTypo(typo, callback){
   var anim = {scrollTop: typo.y};
@@ -71,10 +68,15 @@ $.when.apply(null, arrFun).then(function(){
     canvas.height = $(window).height() * arrImg.length;
     canvas.width = $(window).width();
 
+    var ctx = canvas.getContext("2d");
+
+    ctx.font = "40px Arial";
+
     instance.images.forEach(function(image, i){
       var typo = arrData[i].typo;
 
-      ctx.fillText(typo.oldText, 0, height + 30);
+      ctx.fillText(typo.oldText + " => "  + typo.newText, 0, height + 30);
+//      ctx.fillText(typo.oldText, 0, height + 30);
       ctx.drawImage(image.img, 0, height + 30 + 30);
 
       height += (image.img.height + 30);
