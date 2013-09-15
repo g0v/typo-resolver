@@ -75,11 +75,15 @@ $.when.apply(null, arrFun).then(function(){
     instance.images.forEach(function(image, i){
       var typo = arrData[i].typo;
 
-      ctx.fillText(typo.oldText + " => "  + typo.newText, 0, height + 30);
-//      ctx.fillText(typo.oldText, 0, height + 30);
-      ctx.drawImage(image.img, 0, height + 30 + 30);
+      console.log(image.img.width + ", " + image.img.height);
 
-      height += (image.img.height + 30);
+      ctx.fillText(typo.oldText + " => "  + typo.newText, 0, height + 40);
+
+      height += 60;
+
+      ctx.drawImage(image.img, 0, 0, image.img.width, 70, 0, height, image.img.width, 70);
+
+      height += (70 + 60);
     });
 
     window.open(canvas.toDataURL());
