@@ -2,6 +2,9 @@ var regex = /[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}/g;
 var emails = $("body").html().match(regex);
 var nl = "%0D%0A";
 var recipients = "";
+var TEXT_HEIGHT = 60;
+var IMG_HEIGHT = 70;
+var MARGIN_HEIGHT = 60;
 
 if(emails !== null) {
   recipients = emails;
@@ -65,7 +68,7 @@ $.when.apply(null, arrFun).then(function(){
   imagesLoaded(arrImg, function(instance){
     var height = 0;
 
-    canvas.height = $(window).height() * arrImg.length;
+    canvas.height = (TEXT_HEIGHT + IMG_HEIGHT + MARGIN_HEIGHT) * arrImg.length;
     canvas.width = $(window).width();
 
     var ctx = canvas.getContext("2d");
@@ -77,13 +80,13 @@ $.when.apply(null, arrFun).then(function(){
 
       console.log(image.img.width + ", " + image.img.height);
 
-      ctx.fillText(typo.oldText + " => "  + typo.newText, 0, height + 40);
+      ctx.fillText(typo.oldText + " => "  + typo.newText, 0, height + (TEXT_HEIGHT - 20));
 
-      height += 60;
+      height += TEXT_HEIGHT;
 
-      ctx.drawImage(image.img, 0, 0, image.img.width, 70, 0, height, image.img.width, 70);
+      ctx.drawImage(image.img, 0, 0, image.img.width, IMG_HEIGHT, 0, height, image.img.width, IMG_HEIGHT);
 
-      height += (70 + 60);
+      height += (IMG_HEIGHT + MARGIN_HEIGHT);
     });
 
     window.open(canvas.toDataURL());
