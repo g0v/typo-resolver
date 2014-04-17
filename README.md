@@ -7,4 +7,4 @@
 * [YouTube DEMO](https://www.youtube.com/watch?v=dRDOCLEaco4)
 * [Google chrome extension install](https://chrome.google.com/webstore/detail/typo-resolver/kpmhpplainkjokabdbjkfdkohacblnlo)
 
-其餘請參閱[Hackpad](http://hack.g0v.tw/meta/9IbgS6xfHZA)
+其餘請參閱[Hackpad](https://g0v.hackpad.com/Typo-Resolver-O4TZ3PHxvzi)
