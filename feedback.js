@@ -1,3 +1,6 @@
+Parse.initialize("D2PfOAkIKIPqPEffK6TFcwuv8s2Suj5nUSDzTjin", "uD7MDAGFJ2OwyQiz84gYSy2zffEdafrlzhuSP2pN");
+
+
 var regex = /[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}/g;
 var emails = $("body").html().match(regex);
 var nl = "%0D%0A";
@@ -9,14 +12,13 @@ var MARGIN_HEIGHT = 60;
 if(emails !== null) {
   recipients = emails;
 }else{
-  alert("not found any email address, please input some valid email addresses manually.");
+  email = "email not found";
 }
 
 var subject = "[Typo Resolver] " + document.title + " has some typo";
 var body = "Hello" + nl + nl + "Your site has some typo. The attachment has already highlight it." + nl + nl + nl + "from Typo Resolver ( https://chrome.google.com/webstore/detail/kpmhpplainkjokabdbjkfdkohacblnlo ) ";
 var arrData = [];
 var arrFun = [];
-var canvas = document.createElement("canvas");
 
 function scrollToWithTypo(typo, callback){
   var anim = {scrollTop: typo.y};
@@ -65,32 +67,77 @@ $.when.apply(null, arrFun).then(function(){
     delete data.response;
   });
 
-  imagesLoaded(arrImg, function(instance){
-    var height = 0;
+  html2canvas(document.body, {
+    onrendered: function(canvas) {
 
-    canvas.height = (TEXT_HEIGHT + IMG_HEIGHT + MARGIN_HEIGHT) * arrImg.length;
-    canvas.width = $(window).width();
+      var tempIMG = new Image();
+      tempIMG.src = canvas.toDataURL();
 
-    var ctx = canvas.getContext("2d");
+      imagesLoaded(arrImg, function(instance){
+        var height = canvas.height;
 
-    ctx.font = "40px Arial";
+        canvas.height = (TEXT_HEIGHT + IMG_HEIGHT + MARGIN_HEIGHT) * arrImg.length+canvas.height;
+        canvas.width = $(window).width();
 
-    instance.images.forEach(function(image, i){
-      var typo = arrData[i].typo;
+        var ctx = canvas.getContext("2d");
 
-      console.log(image.img.width + ", " + image.img.height);
+        ctx.font = "40px Arial";
+        ctx.drawImage(tempIMG,0,0);
 
-      ctx.fillText(typo.oldText + " => "  + typo.newText, 0, height + (TEXT_HEIGHT - 20));
+        instance.images.forEach(function(image, i){
+          var typo = arrData[i].typo;
 
-      height += TEXT_HEIGHT;
+          console.log(image.img.width + ", " + image.img.height);
 
-      ctx.drawImage(image.img, 0, 0, image.img.width, IMG_HEIGHT, 0, height, image.img.width, IMG_HEIGHT);
+          ctx.fillText(typo.oldText + " => "  + typo.newText, 0, height + (TEXT_HEIGHT - 20));
 
-      height += (IMG_HEIGHT + MARGIN_HEIGHT);
-    });
+          height += TEXT_HEIGHT;
 
-    window.open(canvas.toDataURL());
+        });
+      });
 
-    window.open("mailto:" + recipients + "?subject=" + subject + "&body=" + body);
+
+      $.ajax({
+        url: 'https://api.imgur.com/3/image',
+        headers: {
+          'Authorization': 'Client-ID 33f1b82cfcb816a'
+        },
+        type: 'POST',
+        data: {
+          'image': canvas.toDataURL("image/png").replace("data:image/png;base64,","")
+        },
+        datatype: 'JSON',
+        success: function(req)
+        {
+          window.open(req.data.link);
+
+          var Feedback_report = Parse.Object.extend("Feedback_report");
+          var feedback_report = new Feedback_report();
+          feedback_report.set("owner_email",String(emails));
+          feedback_report.set("owner_url",String(window.location.href));
+          feedback_report.set("image_url",String(req.data.link));
+
+          feedback_report.save(null, {
+            success: function(feedback_report) {
+              // Execute any logic that should take place after the object is saved.
+              alert('New object created with objectId: ' + feedback_report.id);
+            },
+            error: function(feedback_report, error) {
+              // Execute any logic that should take place if the save fails.
+              // error is a Parse.Error with an error code and description.
+              alert('Failed to create new object, with error code: ' + error.description);
+            }
+          });
+
+
+        },
+        error: function(xhr ,ajaxOption, thrownError)
+        {
+          alert('ERROR SECTION : Handle Comments');
+        }
+      });
+
+    }
   });
+
 });
