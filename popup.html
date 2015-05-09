@@ -1,11 +1,14 @@
 <!doctype html>
 <html>
+
+<script src="popup.js"></script>
+
 <head>
     <meta charset="UTF-8" />
     <title>My Button</title>
     <style type="text/css">
-    .fixbtn {
-        width: 50px;
+    #fixbtn {
+        width: 100px;
         text-align: center;
         -moz-box-shadow:inset 0px 1px 0px 0px #cf866c;
         -webkit-box-shadow:inset 0px 1px 0px 0px #cf866c;
@@ -31,7 +34,8 @@
         text-decoration:none;
         text-shadow:0px 1px 0px #854629;
     }
-    .fixbtn:hover {
+    #fixbtn:hover {
+        width: 100px;
         background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #bc3315), color-stop(1, #d0451b));
         background:-moz-linear-gradient(top, #bc3315 5%, #d0451b 100%);
         background:-webkit-linear-gradient(top, #bc3315 5%, #d0451b 100%);
@@ -41,13 +45,12 @@
         filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bc3315', endColorstr='#d0451b',GradientType=0);
         background-color:#bc3315;
     }
-    .fixbtn:active {
+    #fixbtn:active {
         position:relative;
         top:1px;
     }
 
-    .fbbtn {
-        width: 50px;
+    #fbbtn {
         text-align: center;
         -moz-box-shadow:inset 0px 1px 0px 0px #9acc85;
         -webkit-box-shadow:inset 0px 1px 0px 0px #9acc85;
@@ -73,7 +76,7 @@
         text-decoration:none;
         text-shadow:0px 1px 0px #92b879;
     }
-    .fbbtn:hover {
+    #fbbtn:hover {
         background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #68a54b), color-stop(1, #74ad5a));
         background:-moz-linear-gradient(top, #68a54b 5%, #74ad5a 100%);
         background:-webkit-linear-gradient(top, #68a54b 5%, #74ad5a 100%);
@@ -83,19 +86,17 @@
         filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#68a54b', endColorstr='#74ad5a',GradientType=0);
         background-color:#68a54b;
     }
-    .fbbtn:active {
+    #fbbtn:active {
         position:relative;
         top:1px;
     }
-
-
     </style>
 </head>
 <body>
-    <a href="#" class="fixbtn">Fix it</a>
+    <button id="fixbtn">Fix it</button>
     <br>
     <br>
-    <a href="#" class="fbbtn">feedback</a>
+    <button id="fbbtn">feedback</button>
 
 </body>
 </html>
