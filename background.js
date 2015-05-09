@@ -1,4 +1,3 @@
-console.log("I am background.js");
 
 var arrTypo = [];
 var mnuParent = chrome.contextMenus.create({
