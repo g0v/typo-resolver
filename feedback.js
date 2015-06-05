@@ -96,7 +96,6 @@ $.when.apply(null, arrFun).then(function(){
         });
       });
 
-
       $.ajax({
         url: 'https://api.imgur.com/3/image',
         headers: {
@@ -120,7 +119,7 @@ $.when.apply(null, arrFun).then(function(){
           feedback_report.save(null, {
             success: function(feedback_report) {
               // Execute any logic that should take place after the object is saved.
-              alert('New object created with objectId: ' + feedback_report.id);
+              alert('we received your feedback, thank for your report!!');
             },
             error: function(feedback_report, error) {
               // Execute any logic that should take place if the save fails.

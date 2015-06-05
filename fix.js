@@ -21,6 +21,7 @@ typo.setPosition($(oldSpan[0]).offset().left, $(oldSpan[0]).offset().top);
 typo.setText($(oldSpan[0]).text(), $(newSpan[0]).text());
 typo.setUrl(window.location.href);
 
+
 //pass typo object to background.js
 chrome.runtime.sendMessage({"action": "fix", "typo": typo}, function(response){
   alert("response: " + response);

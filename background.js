@@ -61,8 +61,14 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
     if(request.clicked === "fixbtn"){
-        fixClick();
-        sendResponse("finish");
+      if(window.getSelection().toString() !== ""){
+          fixClick();
+          sendResponse("finish");
+      }
+      else{
+        alert("please select a word first!!");
+        sendResponse("nothing selected");
+      }
     }
 });
 
