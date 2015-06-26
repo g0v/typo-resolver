@@ -32,7 +32,7 @@ function feedbackClick(){
             chrome.tabs.executeScript({file: "html2canvas.js"}, function() {
                 chrome.tabs.executeScript({file: "Typo.js"}, function(){
                     chrome.tabs.executeScript({code: "var arrTypo = JSON.parse('" + JSON.stringify(arrTypo) + "');"}, function(){
-                        chrome.tabs.executeScript({file: "parse-1.3.4.min.js"});
+                        chrome.tabs.executeScript({file: "parse-1.4.2.min.js"});
                         chrome.tabs.executeScript({file: "feedback.js"});
                     });
                 });

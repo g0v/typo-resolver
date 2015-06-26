@@ -1,4 +1,4 @@
-Parse.initialize("D2PfOAkIKIPqPEffK6TFcwuv8s2Suj5nUSDzTjin", "uD7MDAGFJ2OwyQiz84gYSy2zffEdafrlzhuSP2pN");
+Parse.initialize("UlAH22fSJ4ZHX8PPL4PfzEemzmdpUYDZRDsbgxTH", "9uCom1u4NBFUKynD276AIrkDL2mXhAqa7zuBmbt5");
 
 
 var regex = /[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}/g;
